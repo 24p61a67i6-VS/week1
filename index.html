@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Registration</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .card {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    width: 340px;
+    text-align: center;
+  }
+  h2 { color: #333; }
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+  }
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover { background: #45a049; }
+  #errorMsg {
+    color: red;
+    margin-top: 8px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Event Registration</h2>
+  <form id="registrationForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" pattern="[0-9]{10}" required>
+
+    <label for="event">Select Event</label>
+    <select id="event">
+      <option>Tech Talk</option>
+      <option>Workshop</option>
+      <option>Hackathon</option>
+    </select>
+
+    <button type="submit">Register</button>
+    <p id="errorMsg"></p>
+  </form>
+</div>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const event = document.getElementById("event").value;
+
+  if (name === "" || email === "" || phone === "") {
+    document.getElementById("errorMsg").textContent = "Please fill all fields correctly.";
+    return;
+  }
+
+  const params = new URLSearchParams({ name, email, event });
+  window.location.href = "success.html?" + params.toString();
+});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Registration Successful</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    width: 340px;
+    text-align: center;
+  }
+  .checkmark {
+    font-size: 60px;
+    color: #4CAF50;
+  }
+  h2 {
+    color: #333;
+    margin-top: 10px;
+  }
+  p {
+    color: #555;
+    margin: 6px 0;
+  }
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  a:hover { background: #45a049; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="checkmark">&#10004;</div>
+  <h2>Registration Successful!</h2>
+  <p id="details">Thank you for registering.</p>
+  <a href="registration.html">Register Another</a>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name");
+  const email = params.get("email");
+  const event = params.get("event");
+
+  if (name && event) {
+    document.getElementById("details").innerHTML =
+      `Thank you, <strong>${name}</strong>!<br>You are successfully registered for <strong>${event}</strong>.<br>A confirmation has been noted for <strong>${email}</strong>.`;
+  }
+</script>
+
+</body>
+</html>
