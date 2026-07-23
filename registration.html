@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Student Registration Form </title>
+<style>
+body
+{ 
+    font-family: Ariel;
+    margin:0;
+	background : white;
+}
+h2
+{
+   text-align: center;
+   color: blue;
+   margin: 40px;
+}
+form
+{
+   margin:40px;
+   color: blue;
+}
+</style>
+
+<script>
+<function validateForm()>
+{
+var Name= document.getElementById("name").value;
+var Email=document.getElementById("email").value;
+var Password=document.getElementById("password").value;
+var Age=document.getElementById("age").value;
+var Date of Birth=document.getElementById("dob").value;
+var Gender=document.querySelector('input[name="gender"]:checked;
+var Course=document.getElementById("course").value;
+var Address=document.getElementById("address").value;
+var Phone number=document.getElementById("phone").value;
+var file=document.getElementById("photo").value;
+
+var emailPattern= /^[^]+@[^]+/.[0-9](2,3)$/;
+
+if(Name==="") {
+alert("Name should be filled");
+return false;
+}
+
+if(!email.match(emailPattern)) {
+alert("enter valid email");
+return false;
+}
+
+if(Password.length<6) {
+alert("password should contain atleast 6 digits");
+return false;
+}
+
+if(age==="") {
+alert("age should be filled");
+return false;
+}
+
+if(Date of Birth==="") {
+alert("please enter dob");
+return false;
+}
+
+if(!Gender) {
+alert("please select gender");
+return false;
+}
+
+if(Course==="") {
+alert("please select course");
+return false;
+}
+
+if(Address==="") {
+alert("please fill the address");
+return false;
+}
+
+if(Hobbies==="") {
+alert("please choose hobbies");
+alert false;
+}
+
+if(Phone number==="") {
+alert("please fill phone number");
+return false;
+}
+
+alert("Registration Successfull!");
+return true;
+}
+
+</script>
+</head>
+
+<body>
+<h2> Student Registration Form</h2>
+<form onsubmit="return validateForm()" >
+1.Name:<input type="text" id="name"><br><br>
+2.Email:<input type="email" id="email"><br><br>
+3.Password:<input type="password" id="password"><br><br>
+4.Age:<input type="number" id="age"><br><br>
+5. Date of Birth:<input type="date" id="dob"><br><br>
+6. Gender: <input type="radio" name="gender" value="Male">Male   
+                   <input type="radio" name="gender" value="Female">Female <br><br>
+7.Course:<select id="course">
+                 <option> CSE </option>
+				 <option> EEE </option>
+				 <option>ECE </option>
+				 <option> MECH </option>
+				 </select> <br><br>
+8.Address:<textarea  id="address" > </textarea> <br><br>
+9.Hobbies: <input type="checkbox">Reading
+                    <input type="checkbox">Swimming
+					<input type="checkbox">Dancing <br><br>
+10. Phone number:<input type="number" id="phone"> <br><br>
+11. File: <input type="file" id="photo"><br><br>
+<button type="submit"  Name="Register">Register <br><br>
+</form>
+</body>
+</html>
+
+
