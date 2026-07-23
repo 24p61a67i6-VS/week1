@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Registration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Event Registration</h2>
+
+<form id="registrationForm">
+
+<label for="name">Full Name</label>
+<input type="text" id="name" required>
+
+<label for="email">Email</label>
+<input type="email" id="email" required>
+
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" pattern="[0-9]{10}" required>
+
+<label for="event">Select Event</label>
+
+<select id="event">
+    <option>Tech Talk</option>
+    <option>Workshop</option>
+    <option>Hackathon</option>
+</select>
+
+<button type="submit">Register</button>
+
+<p id="errorMsg"></p>
+
+</form>
+
+</div>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const event = document.getElementById("event").value;
+
+    if(name==="" || email==="" || phone===""){
+        document.getElementById("errorMsg").textContent="Please fill all fields correctly.";
+        return;
+    }
+
+    const params = new URLSearchParams({name,email,event});
+    window.location.href = "success.html?" + params.toString();
+});
+</script>
+
+</body>
+</html>
+
+/* Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+/* Page */
+body{
+    background:#f0f2f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* Card */
+.container{
+    background:#fff;
+    width:340px;
+    padding:30px 40px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+/* Heading */
+h2{
+    color:#333;
+    margin-bottom:15px;
+}
+
+/* Labels */
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:5px;
+    text-align:left;
+    font-weight:bold;
+    color:#444;
+}
+
+/* Input Fields */
+input,
+select{
+    width:100%;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
+}
+
+/* Focus Effect */
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#4CAF50;
+    box-shadow:0 0 5px rgba(76,175,80,0.5);
+}
+
+/* Button */
+button{
+    width:100%;
+    margin-top:20px;
+    padding:10px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#45a049;
+}
+
+/* Error Message */
+#errorMsg{
+    color:red;
+    margin-top:10px;
+    font-weight:bold;
+}
